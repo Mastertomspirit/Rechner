@@ -103,6 +103,45 @@ public class InputEvent implements ActionListener {
 			konvertieren('/');
 			gui.getAusgabefeld().setText(berechnung.getZwischenErgebnis());
 		}
+		if(e.getSource() == gui.getBtnQuadrat()) {
+			if(zahl.length() == 0 && !gui.getEingabefeld().getText().isEmpty()) {
+				gui.getEingabefeld().setText(String.valueOf(berechnung.potenzieren(2, Double.parseDouble(gui.getEingabefeld().getText().replace(',', '.')))));
+			}else if(zahl.length() != 0) {
+				try {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.potenzieren(2, Double.parseDouble(zahl.toString().replace(',', '.')))));
+				}catch(Exception e1) {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.potenzieren(2, Double.parseDouble(zahl.toString()))));
+				}
+			}
+			zahl.delete(0, zahl.length());		
+			rechnung.delete(0, rechnung.length());		
+		}
+		if(e.getSource() == gui.getBtnProzent()) {
+			if(zahl.length() == 0 && !gui.getEingabefeld().getText().isEmpty()) {
+				gui.getEingabefeld().setText(String.valueOf(berechnung.prozent(Double.parseDouble(gui.getEingabefeld().getText().replace(',', '.')))));
+			}else if(zahl.length() != 0) {
+				try {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.prozent(Double.parseDouble(zahl.toString().replace(',', '.')))));
+				}catch(Exception e1) {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.prozent(Double.parseDouble(zahl.toString()))));
+				}
+			}
+			zahl.delete(0, zahl.length());		
+			rechnung.delete(0, rechnung.length());
+		}
+		if(e.getSource() == gui.getBtnWurzel()) {
+			if(zahl.length() == 0 && !gui.getEingabefeld().getText().isEmpty()) {
+				gui.getEingabefeld().setText(String.valueOf(berechnung.wurzel(Double.parseDouble(gui.getEingabefeld().getText().replace(',', '.')))));
+			}else if(zahl.length() != 0) {
+				try {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.wurzel(Double.parseDouble(zahl.toString().replace(',', '.')))));
+				}catch(Exception e1) {
+					gui.getEingabefeld().setText(String.valueOf(berechnung.wurzel(Double.parseDouble(zahl.toString()))));
+				}
+			}
+			zahl.delete(0, zahl.length());		
+			rechnung.delete(0, rechnung.length());
+		}
 		if(e.getSource() == gui.getBtnKomma()) {
 			if(zahl.length() == 0) {
 				zahl.append("0");

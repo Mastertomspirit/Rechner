@@ -19,8 +19,8 @@ public class Gui extends JFrame {
 	private JTextField eingabefeld;
 	private JTextArea textF1;
 	private JButton btnZahl_0, btnZahl_1, btnZahl_2, btnZahl_3, btnZahl_4, btnZahl_5, btnZahl_6, btnZahl_7, btnZahl_8, btnZahl_9;
-	private JButton btnAddieren, btnSubtrahieren, btnMultiplizieren, btnDividieren, btnKomma, btnZuruck, btnLoeschen, btnErgebnis, btnVerlauf;
-	private JButton btnOptionen, btnInfo;
+	private JButton btnAddieren, btnSubtrahieren, btnMultiplizieren, btnDividieren, btnWurzel, btnProzent, btnQuadrat, btnErgebnis ;
+	private JButton btnKomma, btnZuruck, btnLoeschen, btnVerlauf, btnOptionen, btnInfo;
 	private Font font = new Font("Comic Sans MS", Font.BOLD, 22);
 	private int height = 470;
 //	Fensterbreite ohne Verlauf
@@ -183,7 +183,7 @@ public class Gui extends JFrame {
 		btnZuruck.setBounds(250, 128, 110, 50);
 		hauptPane.add(btnZuruck);
 		
-// 	Alles löschen CE
+// 	Alles löschen C
 		btnLoeschen = new JButton("C");
 		btnLoeschen.addActionListener(input);
 		btnLoeschen.setForeground(Color.BLACK);
@@ -192,7 +192,7 @@ public class Gui extends JFrame {
 		hauptPane.add(btnLoeschen);
 	
 // 	Wurzel √
-		JButton btnWurzel = new JButton("√");
+		btnWurzel = new JButton("√");
 		btnWurzel.addActionListener(input);
 		btnWurzel.setForeground(Color.BLACK);
 		btnWurzel.setFont(font);
@@ -200,7 +200,7 @@ public class Gui extends JFrame {
 		hauptPane.add(btnWurzel);
 		
 // 	Quadrat x²
-		JButton btnQuadrat = new JButton("x²");
+		btnQuadrat = new JButton("x²");
 		btnQuadrat.addActionListener(input);
 		btnQuadrat.setForeground(Color.BLACK);
 		btnQuadrat.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
@@ -208,7 +208,7 @@ public class Gui extends JFrame {
 		hauptPane.add(btnQuadrat);
 		
 // 	Prozent %
-		JButton btnProzent = new JButton("%");
+		btnProzent = new JButton("%");
 		btnProzent.addActionListener(input);
 		btnProzent.setForeground(Color.BLACK);
 		btnProzent.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -343,6 +343,18 @@ public class Gui extends JFrame {
 	public JButton getBtnDividieren() {
 		return btnDividieren;
 	}
+	public JButton getBtnWurzel() {
+		return btnWurzel;
+	}
+
+	public JButton getBtnProzent() {
+		return btnProzent;
+	}
+
+	public JButton getBtnQuadrat() {
+		return btnQuadrat;
+	}
+
 	public JButton getBtnKomma() {
 		return btnKomma;
 	}

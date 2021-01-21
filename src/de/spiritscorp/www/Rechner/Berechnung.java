@@ -93,6 +93,18 @@ public class Berechnung {
 	void dividieren(Double zahl1, Double zahl2) {
 		zwischenErgebnis.add(zahl1 / zahl2);
 	}
+
+	public double potenzieren(int potenz, double basis) {
+		double ergebnis = basis;		
+		for(int i =1;i<potenz;i++) {
+					ergebnis *= basis;
+		}
+		return ergebnis;
+	}
+
+	public double prozent(double zahl) {
+		return zahl / 100;
+	}
 	
 //	Gibt das aktuelle Zwischenergebnis zurück
 	String getZwischenErgebnis() {
@@ -123,4 +135,9 @@ public class Berechnung {
 		operatorListe.clear();
 		
 	}
+
+	public double wurzel(double basis) {
+		return Math.sqrt(basis);
+	}
+
 }
