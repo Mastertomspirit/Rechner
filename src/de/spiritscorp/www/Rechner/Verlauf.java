@@ -3,6 +3,7 @@ package de.spiritscorp.www.Rechner;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -18,15 +19,15 @@ public class Verlauf {
 	}
 
 //	 Speichert eine komplette Rechnung in der Datei ab und prüft vorher die Liste auf maximal 15 Einträge
-	void verlaufSpeichern(ArrayList<Double> rechnung, ArrayList<Character> operator, Double ergebnis) {
+	void verlaufSpeichern(ArrayList<BigDecimal> rechnung, ArrayList<Character> operator, BigDecimal ergebnis) {
 //		TODO	Maximal 15? Einträge
 
 		try(BufferedWriter br = Files.newBufferedWriter(path, StandardOpenOption.CREATE,StandardOpenOption.APPEND)){
-			br.write(String.valueOf(rechnung.get(0)));
+			br.write(rechnung.get(0).toString());
 			for(int i=1; i<rechnung.size(); i++) {
-				br.write(" " + operator.get(i-1) + " " + String.valueOf(rechnung.get(i)));
+				br.write(" " + operator.get(i-1) + " " + rechnung.get(i).toString());
 			}
-			br.write(" = " + ergebnis + System.lineSeparator());
+			br.write(" = " + ergebnis.toString() + System.lineSeparator());
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

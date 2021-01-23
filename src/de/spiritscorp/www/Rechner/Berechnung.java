@@ -1,18 +1,19 @@
 package de.spiritscorp.www.Rechner;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 
 public class Berechnung {
 	
-	private ArrayList<Double> eingabeListe;
 	private ArrayList<Character> operatorListe;
-	private ArrayList<Double> zwischenErgebnis;
+	private ArrayList<BigDecimal> eingListe, zwischListe;
 	private Var var;
 
 	public Berechnung(Var var) {
-		eingabeListe = new ArrayList<>();
 		operatorListe = new ArrayList<>();
-		zwischenErgebnis = new ArrayList<>();
+		eingListe = new ArrayList<>();
+		zwischListe = new ArrayList<>();
 		this.var = var;
 	}
 	
@@ -21,108 +22,94 @@ public class Berechnung {
 *		es wird geprüft ob es schon ein Zwischenergebnis gibt mit dem weitergerechnet werden kann 
 *		Ist es die letzte Zahl, wird auch wieder anhand der Länge der Eingabeliste entschieden, ob es mit dem Zwischenergebnis weiter geht
 */
-	void setEingabe(Double eingabe, Character operator) {
-		eingabeListe.add(eingabe);
+	
+
+	void setEingabe(BigDecimal bigDecimal, Character operator) {
+		eingListe.add(bigDecimal);
 		if(operator != '=') {
 			operatorListe.add(operator);
-			if(eingabeListe.size() ==2) {
-				switch (operatorListe.get(operatorListe.size()-2)){
-					case '+':	addieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
+			if(eingListe.size() ==2) {
+				switch(operatorListe.get(operatorListe.size()-2)) {
+					case '+': 	zwischListe.add(eingListe.get(eingListe.size()-2).add(eingListe.get(eingListe.size()-1)));
 									break;
-					case '-':	subtrahieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
+					case '-': 	zwischListe.add(eingListe.get(eingListe.size()-2).subtract(eingListe.get(eingListe.size()-1)));
 									break;
-					case '*':	multiplizieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
+					case '*': 	zwischListe.add(eingListe.get(eingListe.size()-2).multiply(eingListe.get(eingListe.size()-1)));
 									break;
-					case '/':	dividieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
+					case '/': 	zwischListe.add(eingListe.get(eingListe.size()-2).divide(eingListe.get(eingListe.size()-1)));
 									break;
 				}
 			}
-			if(eingabeListe.size() > 2) {
-				switch (operatorListe.get(operatorListe.size()-2)){
-					case '+':	addieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '-':	subtrahieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '*':	multiplizieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '/':	dividieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
+			if(eingListe.size() > 2) {
+				switch(operatorListe.get(operatorListe.size()-2)) {
+				case '+': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).add(eingListe.get(eingListe.size()-1)));
+								break;
+				case '-': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).subtract(eingListe.get(eingListe.size()-1)));
+								break;
+				case '*': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).multiply(eingListe.get(eingListe.size()-1)));
+								break;
+				case '/': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).divide(eingListe.get(eingListe.size()-1)));
+								break;
 				}
 			}
 		}else {
-			if(eingabeListe.size() == 1) {
-				zwischenErgebnis.add(eingabe);
-			}else if(eingabeListe.size() ==2) {
+			if(eingListe.size() == 1) {
+				zwischListe.add(bigDecimal);
+			}else if(eingListe.size() ==2) {
 				switch (operatorListe.get(operatorListe.size()-1)){
-					case '+':	addieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '-':	subtrahieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '*':	multiplizieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '/':	dividieren(eingabeListe.get(eingabeListe.size()-2), eingabeListe.get(eingabeListe.size() -1));
-									break;
-				}
-			}else if(eingabeListe.size() > 2) {
-				switch (operatorListe.get(operatorListe.size()-1)){
-					case '+':	addieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '-':	subtrahieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '*':	multiplizieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
-					case '/':	dividieren(zwischenErgebnis.get(zwischenErgebnis.size()-1), eingabeListe.get(eingabeListe.size() -1));
-									break;
+				case '+': 	zwischListe.add(eingListe.get(eingListe.size()-2).add(eingListe.get(eingListe.size()-1)));
+								break;
+				case '-': 	zwischListe.add(eingListe.get(eingListe.size()-2).subtract(eingListe.get(eingListe.size()-1)));
+								break;
+				case '*': 	zwischListe.add(eingListe.get(eingListe.size()-2).multiply(eingListe.get(eingListe.size()-1)));
+								break;
+				case '/': 	zwischListe.add(eingListe.get(eingListe.size()-2).divide(eingListe.get(eingListe.size()-1)));
+								break;
+				}		
+			}else if(eingListe.size() > 2) {
+				switch(operatorListe.get(operatorListe.size()-1)) {
+				case '+': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).add(eingListe.get(eingListe.size()-1)));
+								break;
+				case '-': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).subtract(eingListe.get(eingListe.size()-1)));
+								break;
+				case '*': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).multiply(eingListe.get(eingListe.size()-1)));
+								break;
+				case '/': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).divide(eingListe.get(eingListe.size()-1)));
+								break;
 				}
 			}
 		}
 	}
 	
-	void addieren(Double zahl1, Double zahl2) {
-		zwischenErgebnis.add(zahl1 + zahl2);
-	}
-	
-	void subtrahieren(Double zahl1, Double zahl2) {
-		zwischenErgebnis.add(zahl1 - zahl2);
-	}	
-	
-	void multiplizieren(Double zahl1, Double zahl2) {
-		zwischenErgebnis.add(zahl1 * zahl2);
-	}	
-	
-	void dividieren(Double zahl1, Double zahl2) {
-		zwischenErgebnis.add(zahl1 / zahl2);
+	public String prozent(BigDecimal bigDecimal) {
+		return bigDecimal.divide(new BigDecimal("100")).toString();
 	}
 
-	public double potenzieren(int potenz, double basis) {
-		double ergebnis = basis;		
-		for(int i =1;i<potenz;i++) {
-					ergebnis *= basis;
-		}
-		return ergebnis;
+	public String wurzel(BigDecimal bigDecimal) {
+		return bigDecimal.sqrt(new MathContext(0)).toString();
 	}
 
-	public double prozent(double zahl) {
-		return zahl / 100;
+	public String potenzieren(int potenz, BigDecimal bigDecimal) {
+		return bigDecimal.pow(potenz).toString();
 	}
 	
 //	Gibt das aktuelle Zwischenergebnis zurück
 	String getZwischenErgebnis() {
-		if(zwischenErgebnis.size() == 0) {
+		if(zwischListe.size() == 0) {
 			return new String("");
 		}else {
-			return zwischenErgebnis.toString().replace('.', ',');
+			return zwischListe.toString();
 		}
 	}
 	
 //	Liefert das Ergebnis zurück und speichert es als Verlauf ab
 	String getErgebnis() {
-		if(zwischenErgebnis.size() == 0) {
-			eingabeListe.clear();
+		if(zwischListe.size() == 0) {
+			eingListe.clear();
 			return new String("");
 		}else {
-			new Verlauf(var).verlaufSpeichern(eingabeListe, operatorListe, zwischenErgebnis.get(zwischenErgebnis.size()-1));
-			String str = zwischenErgebnis.get(zwischenErgebnis.size() -1).toString().replace('.', ',');
+			new Verlauf(var).verlaufSpeichern(eingListe, operatorListe, zwischListe.get(zwischListe.size()-1));
+			String str = zwischListe.get(zwischListe.size() -1).toString();
 			zurucksetzen();
 			return str;
 		}		
@@ -130,14 +117,8 @@ public class Berechnung {
 	
 //	Setzt alle Listen zurück
 	void zurucksetzen() {
-		zwischenErgebnis.clear();
-		eingabeListe.clear();
+		zwischListe.clear();
+		eingListe.clear();
 		operatorListe.clear();
-		
 	}
-
-	public double wurzel(double basis) {
-		return Math.sqrt(basis);
-	}
-
 }

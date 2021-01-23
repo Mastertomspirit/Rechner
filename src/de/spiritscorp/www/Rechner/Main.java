@@ -3,7 +3,7 @@ package de.spiritscorp.www.Rechner;
 
 /**
  * @author Tom Spirit
- * @version	0.0.2.1
+ * @version	0.0.3.2
  * @date 08.01.2021
  */
 
