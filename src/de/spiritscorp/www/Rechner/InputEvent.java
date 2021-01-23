@@ -198,10 +198,12 @@ public class InputEvent implements ActionListener {
 				var.setHintergrundVerlauf(verlaufFarbe);
 				var.setVordergrundVerlauf(verlaufVGFarbe);
 				gui.getHauptPane().setBackground(var.getHintergrundRechner());
+				gui.setAlwaysOnTop(optionen.getCkbxImVg().isSelected());
 				if(gui.getVerlaufPane() != null) {
 					gui.getVerlaufPane().setBackground(var.getHintergrundVerlauf());
 					gui.getTextF1().setBackground(var.getVordergrundVerlauf());
 				}
+				var.writeConfig();
 			}
 		}
 	}

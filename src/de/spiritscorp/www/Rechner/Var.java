@@ -2,10 +2,12 @@ package de.spiritscorp.www.Rechner;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,9 +51,29 @@ public class Var {
 //		}
 		return false;
 	}
+	
+	void writeConfig() {
+		String s = System.lineSeparator();
+		try(BufferedWriter bw = Files.newBufferedWriter(config, StandardOpenOption.TRUNCATE_EXISTING)){
+			bw.write("----------   Configuration Taschenrechner   ----------" + s + s + s);
+			bw.write("Speicherpfad für Verlauf          " +verlauf.toAbsolutePath().toString() + s + s);
+			for(Map.Entry<String, String> entry : farben.entrySet()) {
+				bw.write("Farbauswahl         Value: " + entry.getValue() +"    Key: " +entry.getKey() +  s);
+			}
+			bw.write(s);
+			bw.write("Hintergrund Rechner           " + getDefaultColorKey(hintergrundRechner) + s);
+			bw.write("Hintergrund Verlauf           " +getDefaultColorKey(hintergrundVerlauf) + s);
+			bw.write("Vordergrund Verlauf           " + getDefaultColorKey(vordergrundVerlauf) + s);
+			bw.write("Hintergrund Optionen          " + getDefaultColorKey(hintergrundOptionen) + s +s);
+			bw.write("Im Vordergrund          " + String.valueOf(imVordergrund));
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 //		Gibt eine Liste mit allen Farbnamen zurück
-	public String[] getColorKey() {
+	public String[] getColorKeys() {
 		String[] s = new String[farben.size()];
 		int i = 0;
 		for(Map.Entry<String, String> entry : farben.entrySet()) {
@@ -77,7 +99,14 @@ public class Var {
 		}
 		return -1;
 	}
-	
+	public String getDefaultColorKey(Color hintergrund) {
+		for(Map.Entry<String, String> entry : farben.entrySet()) {
+			if(hintergrund.equals(Color.decode(entry.getValue()))) {
+				return entry.getKey();
+			}
+		}
+		return null;
+	}
 	public Path getVerlauf() {
 		return verlauf;
 	}

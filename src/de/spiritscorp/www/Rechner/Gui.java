@@ -346,15 +346,12 @@ public class Gui extends JFrame {
 	public JButton getBtnWurzel() {
 		return btnWurzel;
 	}
-
 	public JButton getBtnProzent() {
 		return btnProzent;
 	}
-
 	public JButton getBtnQuadrat() {
 		return btnQuadrat;
 	}
-
 	public JButton getBtnKomma() {
 		return btnKomma;
 	}
@@ -379,7 +376,6 @@ public class Gui extends JFrame {
 	public JTextArea getTextF1() {
 		return textF1;
 	}
-
 	public int getCustomWidth() {
 		return width;
 	}
@@ -389,11 +385,9 @@ public class Gui extends JFrame {
 	public int getWidth_verlauf() {
 		return width_verlauf;
 	}
-
 	public JButton getBtnOptionen() {
 		return btnOptionen;
 	}
-
 	public JButton getBtnInfo() {
 		return btnInfo;
 	}

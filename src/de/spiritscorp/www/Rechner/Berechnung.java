@@ -7,13 +7,13 @@ import java.util.ArrayList;
 public class Berechnung {
 	
 	private ArrayList<Character> operatorListe;
-	private ArrayList<BigDecimal> eingListe, zwischListe;
+	private ArrayList<BigDecimal> eingabeListe, zwischenErgebnis;
 	private Var var;
 
 	public Berechnung(Var var) {
 		operatorListe = new ArrayList<>();
-		eingListe = new ArrayList<>();
-		zwischListe = new ArrayList<>();
+		eingabeListe = new ArrayList<>();
+		zwischenErgebnis = new ArrayList<>();
 		this.var = var;
 	}
 	
@@ -25,56 +25,56 @@ public class Berechnung {
 	
 
 	void setEingabe(BigDecimal bigDecimal, Character operator) {
-		eingListe.add(bigDecimal);
+		eingabeListe.add(bigDecimal);
 		if(operator != '=') {
 			operatorListe.add(operator);
-			if(eingListe.size() ==2) {
+			if(eingabeListe.size() ==2) {
 				switch(operatorListe.get(operatorListe.size()-2)) {
-					case '+': 	zwischListe.add(eingListe.get(eingListe.size()-2).add(eingListe.get(eingListe.size()-1)));
+					case '+': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).add(eingabeListe.get(eingabeListe.size()-1)));
 									break;
-					case '-': 	zwischListe.add(eingListe.get(eingListe.size()-2).subtract(eingListe.get(eingListe.size()-1)));
+					case '-': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).subtract(eingabeListe.get(eingabeListe.size()-1)));
 									break;
-					case '*': 	zwischListe.add(eingListe.get(eingListe.size()-2).multiply(eingListe.get(eingListe.size()-1)));
+					case '*': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).multiply(eingabeListe.get(eingabeListe.size()-1)));
 									break;
-					case '/': 	zwischListe.add(eingListe.get(eingListe.size()-2).divide(eingListe.get(eingListe.size()-1)));
+					case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1)));
 									break;
 				}
 			}
-			if(eingListe.size() > 2) {
+			if(eingabeListe.size() > 2) {
 				switch(operatorListe.get(operatorListe.size()-2)) {
-				case '+': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).add(eingListe.get(eingListe.size()-1)));
+				case '+': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).add(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '-': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).subtract(eingListe.get(eingListe.size()-1)));
+				case '-': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).subtract(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '*': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).multiply(eingListe.get(eingListe.size()-1)));
+				case '*': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).divide(eingListe.get(eingListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1)));
 								break;
 				}
 			}
 		}else {
-			if(eingListe.size() == 1) {
-				zwischListe.add(bigDecimal);
-			}else if(eingListe.size() ==2) {
+			if(eingabeListe.size() == 1) {
+				zwischenErgebnis.add(bigDecimal);
+			}else if(eingabeListe.size() ==2) {
 				switch (operatorListe.get(operatorListe.size()-1)){
-				case '+': 	zwischListe.add(eingListe.get(eingListe.size()-2).add(eingListe.get(eingListe.size()-1)));
+				case '+': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).add(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '-': 	zwischListe.add(eingListe.get(eingListe.size()-2).subtract(eingListe.get(eingListe.size()-1)));
+				case '-': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).subtract(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '*': 	zwischListe.add(eingListe.get(eingListe.size()-2).multiply(eingListe.get(eingListe.size()-1)));
+				case '*': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischListe.add(eingListe.get(eingListe.size()-2).divide(eingListe.get(eingListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1)));
 								break;
 				}		
-			}else if(eingListe.size() > 2) {
+			}else if(eingabeListe.size() > 2) {
 				switch(operatorListe.get(operatorListe.size()-1)) {
-				case '+': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).add(eingListe.get(eingListe.size()-1)));
+				case '+': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).add(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '-': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).subtract(eingListe.get(eingListe.size()-1)));
+				case '-': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).subtract(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '*': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).multiply(eingListe.get(eingListe.size()-1)));
+				case '*': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischListe.add(zwischListe.get(zwischListe.size()-1).divide(eingListe.get(eingListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1)));
 								break;
 				}
 			}
@@ -95,21 +95,21 @@ public class Berechnung {
 	
 //	Gibt das aktuelle Zwischenergebnis zurück
 	String getZwischenErgebnis() {
-		if(zwischListe.size() == 0) {
+		if(zwischenErgebnis.size() == 0) {
 			return new String("");
 		}else {
-			return zwischListe.toString();
+			return zwischenErgebnis.toString();
 		}
 	}
 	
 //	Liefert das Ergebnis zurück und speichert es als Verlauf ab
 	String getErgebnis() {
-		if(zwischListe.size() == 0) {
-			eingListe.clear();
+		if(zwischenErgebnis.size() == 0) {
+			eingabeListe.clear();
 			return new String("");
 		}else {
-			new Verlauf(var).verlaufSpeichern(eingListe, operatorListe, zwischListe.get(zwischListe.size()-1));
-			String str = zwischListe.get(zwischListe.size() -1).toString();
+			new Verlauf(var).verlaufSpeichern(eingabeListe, operatorListe, zwischenErgebnis.get(zwischenErgebnis.size()-1));
+			String str = zwischenErgebnis.get(zwischenErgebnis.size() -1).toString();
 			zurucksetzen();
 			return str;
 		}		
@@ -117,8 +117,8 @@ public class Berechnung {
 	
 //	Setzt alle Listen zurück
 	void zurucksetzen() {
-		zwischListe.clear();
-		eingListe.clear();
+		zwischenErgebnis.clear();
+		eingabeListe.clear();
 		operatorListe.clear();
 	}
 }
