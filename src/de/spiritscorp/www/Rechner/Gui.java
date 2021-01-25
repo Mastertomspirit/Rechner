@@ -40,6 +40,7 @@ public class Gui extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, width, height);
 		setResizable(false);
+		setAlwaysOnTop(var.isImVordergrund());
 		hauptPane = new JPanel();
 		hauptPane.setBounds(0, 0, width, height);
 		hauptPane.setBackground(var.getHintergrundRechner());

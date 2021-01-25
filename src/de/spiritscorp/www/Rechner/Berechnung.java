@@ -86,7 +86,7 @@ public class Berechnung {
 	}
 
 	public String wurzel(BigDecimal bigDecimal) {
-		return bigDecimal.sqrt(new MathContext(0)).toString();
+		return bigDecimal.sqrt(MathContext.DECIMAL64).toString();
 	}
 
 	public String potenzieren(int potenz, BigDecimal bigDecimal) {

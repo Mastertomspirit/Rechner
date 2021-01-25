@@ -69,7 +69,7 @@ public class OptionWindow extends JFrame {
 		
 //		Auswahl immer im Vordergrund
 		ckbxImVg = new JCheckBox();
-//		ckbxImVg.setLocation(480, 275);
+		ckbxImVg.setSelected(var.isImVordergrund());
 		ckbxImVg.setBounds(475, 255, 20, 20);
 		ckbxImVg.setBackground(var.getHintergrundOptionen());
 		
