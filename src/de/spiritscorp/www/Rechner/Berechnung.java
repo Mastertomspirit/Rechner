@@ -115,6 +115,11 @@ public class Berechnung {
 		}		
 	}
 	
+	void wechselLetztesRechenzeichen(char ch) {
+		operatorListe.remove(operatorListe.size()-1);
+		operatorListe.add(ch);
+	}
+	
 //	Setzt alle Listen zurück
 	void zurucksetzen() {
 		zwischenErgebnis.clear();
