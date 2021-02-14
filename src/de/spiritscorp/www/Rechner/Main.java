@@ -4,7 +4,7 @@ package de.spiritscorp.www.Rechner;
 /**
  * @author Tom Spirit
  * @date 08.01.2021
- * @version	0.0.4.5
+ * @version	0.0.4.6
  */
 
 /**

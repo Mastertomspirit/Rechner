@@ -26,7 +26,7 @@ public class Gui extends JFrame {
 //	Fensterbreite ohne Verlauf
 	private int width = 384;
 //	Fensterbreite mit Verlauf
-	private int width_verlauf = 640;
+	private int width_verlauf = 740;
 
 	/**
 	 * Erstellt das Fenster und die Buttons
@@ -277,9 +277,9 @@ public class Gui extends JFrame {
 			verlaufPane.setLayout(null);
 			textF1 = new JTextArea();
 			textF1.setEditable(false);
-			textF1.setBounds(width + 15, 20, 200, height -80);
+			textF1.setBounds(width + 15, 20, 300, height -80);
 			textF1.setBackground(var.getVordergrundVerlauf());
-			textF1.setFont(new Font("Comic Sans MS", Font.BOLD, 9));
+			textF1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 			textF1.setLineWrap(true);
 			textF1.setWrapStyleWord(true);
 			verlaufPane.add(textF1);
