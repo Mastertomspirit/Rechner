@@ -36,7 +36,7 @@ public class Verlauf {
 //	Liest den Verlauf ein und gibt ihn weiter
 	String verlaufAbrufen() {
 		StringBuffer sb = new StringBuffer();
-		String lines = "	       Verlauf"+ System.lineSeparator()+ "          ----------------------";
+		String lines = "	       Verlauf"+ System.lineSeparator()+ "                  ----------------------";
 		if(Files.exists(path) && Files.isReadable(path)) {
 			try(BufferedReader br = Files.newBufferedReader(path)){
 				while(lines != null) {

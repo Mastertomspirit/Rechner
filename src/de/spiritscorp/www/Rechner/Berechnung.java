@@ -2,6 +2,7 @@ package de.spiritscorp.www.Rechner;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Berechnung {
@@ -36,7 +37,7 @@ public class Berechnung {
 									break;
 					case '*': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).multiply(eingabeListe.get(eingabeListe.size()-1)));
 									break;
-					case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1)));
+					case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1),9,RoundingMode.HALF_UP));
 									break;
 				}
 			}
@@ -48,7 +49,7 @@ public class Berechnung {
 								break;
 				case '*': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1),9,RoundingMode.HALF_UP));
 								break;
 				}
 			}
@@ -63,7 +64,7 @@ public class Berechnung {
 								break;
 				case '*': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(eingabeListe.get(eingabeListe.size()-2).divide(eingabeListe.get(eingabeListe.size()-1),9,RoundingMode.HALF_UP));
 								break;
 				}		
 			}else if(eingabeListe.size() > 2) {
@@ -74,7 +75,7 @@ public class Berechnung {
 								break;
 				case '*': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).multiply(eingabeListe.get(eingabeListe.size()-1)));
 								break;
-				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1)));
+				case '/': 	zwischenErgebnis.add(zwischenErgebnis.get(zwischenErgebnis.size()-1).divide(eingabeListe.get(eingabeListe.size()-1),9,RoundingMode.HALF_UP));
 								break;
 				}
 			}
@@ -113,6 +114,11 @@ public class Berechnung {
 			zurucksetzen();
 			return str;
 		}		
+	}
+	
+	void wechselLetztesRechenzeichen(char ch) {
+		operatorListe.remove(operatorListe.size()-1);
+		operatorListe.add(ch);
 	}
 	
 //	Setzt alle Listen zurück
