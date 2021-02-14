@@ -198,7 +198,7 @@ public class InputEvent implements ActionListener {
 			berechnung.wechselLetztesRechenzeichen(operator);
 		}
 //		Die letzte Zahl darf nicht mit 0.0 enden, dann wird ausgerechnet und angezeigt
-		if(zahl.length() != 0 && !zahl.toString().equals("0.0")) {
+		if(zahl.length() != 0 && !zahl.toString().equals("0.0") && !zahl.toString().equals("0")) {
 			if(zahl.indexOf(".") == zahl.length() -1) {
 				zahl.deleteCharAt(zahl.length() -1);
 				rechnung.deleteCharAt(rechnung.length() -1);
@@ -213,7 +213,11 @@ public class InputEvent implements ActionListener {
 			zahl.delete(0, zahl.length());
 			rechnung.delete(rechnung.length()-3, rechnung.length());
 			gui.getEingabefeld().setText(printDeutsch(rechnung.toString()));
-
+		}
+		else if(zahl.toString().equals("0")) {
+			zahl.delete(0, zahl.length());
+			rechnung.delete(rechnung.length()-1, rechnung.length());
+			gui.getEingabefeld().setText(printDeutsch(rechnung.toString()));
 		}
 	}
 	
